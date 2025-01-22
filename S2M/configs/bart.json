@@ -1,0 +1,72 @@
+{
+    "selfies_tokenizer": "bart-base",
+    "ir_encoder": {
+        "type": "MLP",
+        "n_token": 400,
+        "n_layers": 4,
+        "d_hidden": 640,
+        "d_out": 768,
+        "activation": "LeakyReLU",
+        "bias": true
+    },
+    "model": {
+        "type": "BartGenerator",
+        "encoder_layers": 12,
+        "decoder_layers": 12,
+        "encoder_attention_heads": 8,
+        "decoder_attention_heads": 8,
+        "decoder_ffn_dim": 3072,
+        "encoder_ffn_dim": 3072,
+        "activation_function": "gelu",
+        "dropout": 0.0,
+        "max_position_embeddings": 512,
+        "forced_eos_token_id": 2,
+        "use_pretrained": false
+    },
+    "trainer": {
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.0001,
+            "weight_decay": 0.01
+        },
+        "lr_scheduler": {
+            "type": "PolyLR",
+            "power": 1.0,
+            "max_step": 100,
+            "warmup_step": 20
+        },
+        "gradient_accumulation_steps": 1,
+        "max_norm": 1.0,
+        "print_step": 20,
+        "valid_step": 50
+    },
+    "data": {
+        "cross_valid": 1,
+        "batch_size": 2,
+        "transforms": [
+            {
+                "type": "IRNorm",
+                "intensity_max": 300
+            },
+            {
+                "type": "IRSpectrShift",
+                "shift": 10
+            },
+            {
+                "type": "IRSpectrScale",
+                "scale": 0.005
+            },
+            {
+                "type": "IRSmiles"
+            },
+            {
+                "type": "IRCollect",
+                "keys": [
+                    "smi"
+                ]
+            }
+        ]
+    },
+    "seed": 42,
+    "verbose": {}
+}

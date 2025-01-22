@@ -1,0 +1,7 @@
+{
+  "model_name": "bart",
+  "device": "cuda:2",
+  "dataset": "qm9",
+  "train": "train.mdb",
+  "test": "test.mdb"
+}
