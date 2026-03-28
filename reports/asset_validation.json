@@ -1,0 +1,25 @@
+{
+  "mapping": {
+    "entries": 20005,
+    "unique_codes": 20005,
+    "bad_keys": 0,
+    "bad_values": 0
+  },
+  "qm9": {
+    "rows": 127468,
+    "unique_codes": 3220,
+    "bad_rows": 0
+  },
+  "spectrum2code": {
+    "output_length": 10,
+    "output_sum": 9,
+    "all_integers": true
+  },
+  "overlap": {
+    "mapping_codes": 20005,
+    "qm9_codes": 3220,
+    "intersection": 2266,
+    "mapping_codes_not_in_qm9": 17739,
+    "qm9_codes_not_in_mapping": 954
+  }
+}

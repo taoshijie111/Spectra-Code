@@ -1,0 +1,7 @@
+word,smiles,target_code
+natural,N1C=NN2N=CN=C12,"[0, 2, 1, 2, 2, 0, 0, 0, 0, 2]"
+code,N=COCC#C,"[0, 1, 4, 1, 2, 0, 0, 0, 1, 0]"
+spectra,N=C1N=NNN=N1,"[0, 2, 2, 3, 1, 0, 0, 0, 1, 0]"
+language,CC1CC1C,"[0, 0, 1, 1, 0, 0, 0, 7, 0, 0]"
+words,NCC(=O)NC=O,"[0, 1, 3, 2, 2, 0, 0, 1, 0, 0]"
+of,CC1CC(=O)C1,"[0, 0, 1, 1, 5, 0, 0, 2, 0, 0]"
