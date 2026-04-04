@@ -1,11 +1,11 @@
 # Spectra-Code
 
-This repository currently contains two layers of material:
+This repository contains:
 
-- a cleaned reviewer-facing release at the repository root
-- the earlier `S2M/` subtree retained as legacy project code
+- a reviewer-facing release at the repository root
+- an archived `S2M/` source subtree retained only for historical context
 
-The root-level release is the part intended to be shared first during peer review. It contains only small, deterministic assets that can be defended technically and uploaded to GitHub without pulling in large local research directories or demo-oriented scripts.
+For peer review, use the repository root only. The root-level release is the maintained reviewer-facing entry point and contains the deterministic assets that are currently intended to be shared first.
 
 ## Reviewer-Facing Release
 
@@ -38,6 +38,12 @@ Quick validation:
 python scripts/validate_release_assets.py
 ```
 
+Reviewer entry point:
+
+- start from this `README.md`
+- use the root-level `data/`, `scripts/`, `examples/`, and `docs/` directories
+- treat `S2M/` as archived background code, not as the primary reviewer workflow
+
 ## What Is Not Included
 
 This repository intentionally does not yet include:
@@ -56,4 +62,8 @@ This root-level release is a cleaned core asset package. It is not yet the final
 
 ## Legacy `S2M/` Subtree
 
-The existing `S2M/` directory is preserved here as earlier project code. It has not been rewritten to match the cleaned reviewer-facing release and should be treated as legacy project material rather than the sole entry point for peer review.
+The `S2M/` directory is preserved only as archived source/config material from an earlier project state.
+
+- it is not the primary reviewer-facing entry point
+- historical notebooks, training logs, and generated figures have been removed from the public repository to reduce ambiguity
+- if material from `S2M/` is needed for peer review, the reviewer-facing root documentation should take precedence

@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .DS_Store
+S2M/logs/
+S2M/*.ipynb
+S2M/data/*.png

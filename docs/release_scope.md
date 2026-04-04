@@ -38,6 +38,8 @@ This note records what was included, what was excluded, and why.
 - `data_word_mapping3_clean_report.md`
 - historical manuscript, SI, and cover-letter documents
 - old mapping variants such as `data_word_mapping3 2.json`
+- historical `S2M/` notebooks, logs, and generated figures
+  - removed from the public repository so that `S2M/` contains only archived source/config material
 
 ## Excluded From Related Workspaces After Review
 
