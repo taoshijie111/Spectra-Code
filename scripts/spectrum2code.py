@@ -20,7 +20,7 @@ def normalize_to_integer_list(
     numeric_values = [float(v) for v in values]
     total = sum(numeric_values)
     if total <= 0:
-        return [0 for _ in numeric_values]
+        raise ValueError("Spectrum must have positive total intensity")
 
     normalized = [(val / total) * max_value for val in numeric_values]
     integers = [int(round(val)) for val in normalized]

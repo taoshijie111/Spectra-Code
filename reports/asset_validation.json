@@ -13,7 +13,8 @@
   "spectrum2code": {
     "output_length": 10,
     "output_sum": 9,
-    "all_integers": true
+    "all_integers": true,
+    "rejects_nonpositive_input": true
   },
   "overlap": {
     "mapping_codes": 20005,

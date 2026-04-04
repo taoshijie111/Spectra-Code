@@ -86,10 +86,18 @@ def validate_qm9(path: Path) -> tuple[dict, set[tuple[int, ...]]]:
 def validate_spectrum2code() -> dict:
     synthetic = [1.0] * 4000
     code = process_spectrum_to_code(synthetic)
+    rejects_nonpositive_input = False
+
+    try:
+        process_spectrum_to_code([0.0] * 4000)
+    except ValueError:
+        rejects_nonpositive_input = True
+
     return {
         "output_length": len(code),
         "output_sum": sum(code),
         "all_integers": all(isinstance(x, int) for x in code),
+        "rejects_nonpositive_input": rejects_nonpositive_input,
     }
 
 
