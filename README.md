@@ -29,6 +29,8 @@ Included now:
   - current validation findings
 - `docs/license_status.md`
   - current public-license status note
+- `NOTICE.md`
+  - repository-level notice describing the current public-access and licensing status
 - `requirements.txt`
   - minimal Python requirements for the included scripts
 
@@ -42,6 +44,7 @@ Reviewer entry point:
 
 - start from this `README.md`
 - use the root-level `data/`, `scripts/`, `examples/`, and `docs/` directories
+- read `NOTICE.md` for the current repository-wide licensing status
 - treat `S2M/` as archived background code, not as the primary reviewer workflow
 
 ## What Is Not Included
