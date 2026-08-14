@@ -20,9 +20,9 @@ Validation was run on the files included in this release.
   - 3220 unique `n_cond` codes
   - every parsed `n_cond` checked in validation is 10-dimensional, non-negative, and sums to 9
 - code-space overlap
-  - 2266 codes are shared between the cleaned mapping and QM9
-  - 17739 mapping codes are not represented in QM9
-  - 954 QM9 codes are not represented in the cleaned mapping
+  - 2270 codes are shared between the cleaned mapping and QM9
+  - 17735 mapping codes are not represented in QM9
+  - 950 QM9 codes are not represented in the cleaned mapping
 
 ## Interpretation
 

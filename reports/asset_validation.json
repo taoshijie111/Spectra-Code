@@ -19,8 +19,8 @@
   "overlap": {
     "mapping_codes": 20005,
     "qm9_codes": 3220,
-    "intersection": 2266,
-    "mapping_codes_not_in_qm9": 17739,
-    "qm9_codes_not_in_mapping": 954
+    "intersection": 2270,
+    "mapping_codes_not_in_qm9": 17735,
+    "qm9_codes_not_in_mapping": 950
   }
 }
