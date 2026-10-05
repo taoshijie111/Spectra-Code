@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "second_round"
 DICTIONARY = DATA / "versioned_dictionary_400_1023.jsonl.gz"
-EXPECTED_SHA256 = "403c4fbd034ff776f9a2d138a9a91298b976e9c9ec8a69790876c7756dfa2285"
+EXPECTED_SHA256 = "f0b397aa90c12aed2fd2891baf52f738b5b714e4b4e2d6afefa271c0f4589b9a"
 TABLE_LENGTHS = {"s4": 13, "s5": 13, "s6a": 13, "s6b": 13,
                  "s7": 13, "s8": 7, "s9": 13, "s10": 13}
 
@@ -37,31 +37,39 @@ def validate_dictionary() -> dict[str, int | str]:
     assert sha256(DICTIONARY) == EXPECTED_SHA256
     with (ROOT / "data" / "data_word_mapping3_clean.json").open(encoding="utf-8") as handle:
         original = json.load(handle)
-    original_words = {normalize_word(word) for word in original.values()}
-    assert len(original_words) == 20_005
-    for raw_code in original:
+    original_by_word = {}
+    for raw_code, raw_word in original.items():
+        word = normalize_word(raw_word)
         code = ast.literal_eval(raw_code)
         assert len(code) == 10 and sum(code) == 9 and min(code) >= 0
+        assert word not in original_by_word
+        original_by_word[word] = tuple(code)
+    assert len(original_by_word) == 20_005
 
-    words, codes, graphs, rows = set(), set(), set(), set()
+    words, original_codes, codes, graphs, rows = set(), set(), set(), set(), set()
     with gzip.open(DICTIONARY, "rt", encoding="utf-8") as handle:
         for line in handle:
             record = json.loads(line)
             word = normalize_word(record["word"])
+            original_code = record["original_code_10_9"]
             code = record["code"]
             assert record["word"] == word
+            assert tuple(original_code) == original_by_word[word]
             assert len(code) == 400 and all(type(value) is int and value >= 0 for value in code)
             assert sum(code) == 1023
             assert isinstance(record["source_row"], int) and record["source_row"] >= 0
             assert isinstance(record["canonical_smiles"], str) and record["canonical_smiles"]
             assert re.fullmatch(r"[0-9a-f]{64}", record["public_member_sha256"])
+            assert word not in words
             words.add(word)
+            original_codes.add(tuple(original_code))
             codes.add(tuple(code))
             graphs.add(record["canonical_smiles"])
             rows.add(record["source_row"])
-    assert words == original_words
-    assert len(words) == len(codes) == len(graphs) == len(rows) == 20_005
-    return {"entries": len(words), "code_length": 400, "code_total": 1023,
+    assert words == original_by_word.keys()
+    assert len(words) == len(original_codes) == len(codes) == len(graphs) == len(rows) == 20_005
+    return {"entries": len(words), "original_code_length": 10, "original_code_total": 9,
+            "expanded_code_length": 400, "expanded_code_total": 1023,
             "sha256": EXPECTED_SHA256}
 
 

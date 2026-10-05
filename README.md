@@ -7,7 +7,7 @@ This repository provides the word-to-code dictionary, spectrum-encoding utilitie
 - [`data/data_word_mapping3_clean.json`](data/data_word_mapping3_clean.json): the fixed 20,005-entry word-to-code cipher used by the original ten-bin, sum-nine workflow.
 - [`data/qm9_cond4.csv`](data/qm9_cond4.csv): 127,468 QM9-derived molecular records with ten-bin codes.
 - [`examples/mapping_qm9_exact_examples.csv`](examples/mapping_qm9_exact_examples.csv): exact-code examples connecting the fixed dictionary and QM9 table.
-- [`data/second_round/versioned_dictionary_400_1023.jsonl.gz`](data/second_round/versioned_dictionary_400_1023.jsonl.gz): a separate 20,005-entry assignment for the 400-bin, sum-1,023 representation. The original cipher remains unchanged.
+- [`data/second_round/versioned_dictionary_400_1023.jsonl.gz`](data/second_round/versioned_dictionary_400_1023.jsonl.gz): all 20,005 original ten-bin, sum-nine word-code pairs, each accompanied by a separate 400-bin, sum-1,023 computed-spectrum assignment. The original cipher remains the W2C lookup.
 - [`data/second_round/table_s4.csv`](data/second_round/table_s4.csv) through [`table_s10.csv`](data/second_round/table_s10.csv): the per-design capacity, collision, reconstruction, molecular-readout, perturbation, and resolution results reported in Supplementary Tables S4-S10. See the [table guide](data/second_round/README.md).
 
 ## Code

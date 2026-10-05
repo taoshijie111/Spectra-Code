@@ -10,7 +10,7 @@ The fixed W2C dictionary is `data/data_word_mapping3_clean.json`. It contains 20
 
 The expanded-encoding analysis compares eleven integer representations and two PCA/vector-quantization controls on a graph-disjoint split of 127,468 computed spectra: 102,123 training, 12,794 validation, and 12,551 test records. `scripts/expanded_encoding.py` implements the integer encoding and occupancy calculations.
 
-The versioned dictionary in `data/second_round/` assigns the same 20,005 normalized labels to distinct 400-bin, sum-1,023 computed-spectrum codes and canonical molecular graphs. It is a separate lookup; it does not replace the original ten-bin W2C pairs used in the manuscript's case studies.
+The versioned dictionary in `data/second_round/` includes all 20,005 original 10/9 W2C word-code pairs unchanged, alongside separate 400-bin, sum-1,023 computed-spectrum codes and canonical molecular graphs for those labels. The original ten-bin pairs remain authoritative for W2C and the manuscript's case studies; the expanded codes are a separately versioned comparison, not replacements.
 
 Supplementary Tables S4-S10 are distributed as CSV in `data/second_round/`. They report formal capacity in bits, observed occupancy, entropy, pair-collision probability, reconstruction, source-graph recovery, and matched perturbation and resolution results. The [table guide](../data/second_round/README.md) gives denominators and endpoint definitions.
 
