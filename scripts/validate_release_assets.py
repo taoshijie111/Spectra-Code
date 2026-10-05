@@ -1,4 +1,4 @@
-"""Validate the cleaned mapping and QM9 table included in reviewer_release."""
+"""Validate the fixed W2C mapping and QM9-derived molecular table."""
 
 from __future__ import annotations
 

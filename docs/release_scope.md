@@ -1,69 +1,19 @@
-# Release Scope
+# Data and Methods Index
 
-This note records what was included, what was excluded, and why.
+## Original Cipher
 
-## Must-Have Files Included Now
+The fixed W2C dictionary is `data/data_word_mapping3_clean.json`. It contains 20,005 normalized labels assigned to distinct ten-component nonnegative integer codes, each summing to nine. The formal alphabet has `C(18, 9) = 48,620` codes. `scripts/w2c.py` performs exact lookup, and `scripts/spectrum2code.py` converts a 4,000-point spectrum to the same ten-bin code format.
 
-- `data/data_word_mapping3_clean.json`
-- `data/qm9_cond4.csv`
-- `scripts/spectrum2code.py`
-- `scripts/dft_log_utils.py`
-- `scripts/validate_release_assets.py`
-- `examples/mapping_qm9_exact_examples.csv`
-- `README.md`
-- `requirements.txt`
+`data/qm9_cond4.csv` is a separate molecular table containing 127,468 records and their ten-bin codes. Dictionary membership and the occurrence of a code in a particular molecular dataset are different properties.
 
-## Can Be Shared Later, But Not In This Package
+## Expanded Comparison
 
-- `IR_broaden`
-  - only needed if a deterministic figure or retrieval script that consumes those text spectra is restored to reviewer scope
-- `20250103_unified_dataset`
-  - large processed dataset directory; not included because the currently selected release does not expose those visualization scripts
-- raw Gaussian log directories such as `all_logs0527`, `all_logs0529`, and related folders
-  - useful for deeper provenance, but too large for the present GitHub package
-- `experiment_spectral_code_final3.csv`
-  - useful for dataset reconstruction, but too large for this first release package
+The expanded-encoding analysis compares eleven integer representations and two PCA/vector-quantization controls on a graph-disjoint split of 127,468 computed spectra: 102,123 training, 12,794 validation, and 12,551 test records. `scripts/expanded_encoding.py` implements the integer encoding and occupancy calculations.
 
-## Explicitly Excluded
+The versioned dictionary in `data/second_round/` assigns the same 20,005 normalized labels to distinct 400-bin, sum-1,023 computed-spectrum codes and canonical molecular graphs. It is a separate lookup; it does not replace the original ten-bin W2C pairs used in the manuscript's case studies.
 
-- `app4.py`
-  - demo-oriented app with heuristic and random candidate selection
-- `enhanced_final_visualization.py`
-  - stochastic presentation script
-- `figure1_replot_10.py`
-  - deterministic, but excluded by package choice
-- `vae_plot_0811.ipynb`
-- `figure/plot.ipynb`
-- `build_data_word_mapping3_clean.py`
-- `data_word_mapping3_clean_report.md`
-- historical manuscript, SI, and cover-letter documents
-- old mapping variants such as `data_word_mapping3 2.json`
-- historical `S2M/` notebooks, logs, and generated figures
-  - removed from the public repository so that `S2M/` contains only archived source/config material
+Supplementary Tables S4-S10 are distributed as CSV in `data/second_round/`. They report formal capacity in bits, observed occupancy, entropy, pair-collision probability, reconstruction, source-graph recovery, and matched perturbation and resolution results. The [table guide](../data/second_round/README.md) gives denominators and endpoint definitions.
 
-## Excluded From Related Workspaces After Review
+## Validation
 
-- root and dataset copies of `create_unified_dataset.py`
-  - not included because the QM9-only branch is unfinished and contains explicit placeholder logic
-- `scientific_baseline_correction.py`
-  - not included because it recalculates codes with a different rule from the main 10-bin sum-to-9 code system
-- `check_qm9_molecules.py` and `analyze_and_select_molecules.py`
-  - auxiliary analysis utilities, not central to reviewer-facing reproduction
-- `log24000.py`
-  - original file contains Windows-only save paths and noise utilities; a cleaned deterministic subset was extracted into `scripts/dft_log_utils.py`
-
-## Working Rule Used For Inclusion
-
-A file was included only if it satisfied all of the following:
-
-- deterministic output under the selected runtime path
-- no unresolved TODO that blocks interpretation
-- no dependence on unrecovered local outputs
-- no obvious demo-only or presentation-only behavior
-- small enough to be GitHub-friendly
-
-## Remaining Gap
-
-After reviewing the current and related local workspaces, no clean, self-contained, reviewer-ready implementation of the full manuscript-wide C2S/S2M/reinforcement-learning training-and-inference pipeline was found.
-
-This package should therefore be described as a cleaned core asset release, not as the final complete reproducibility repository for every central manuscript claim.
+Run `python scripts/validate_release_assets.py` for the original assets, `python scripts/validate_second_round.py` for the versioned dictionary and tables, and `python -m unittest discover -s tests` for the portable encoding functions.
